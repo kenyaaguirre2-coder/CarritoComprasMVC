@@ -1,0 +1,148 @@
+﻿<!-- Views/Carrito/Delete.cshtml -->
+@model CarritoComprasMVC.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .delete-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+        }
+        .product-detail {
+            background-color: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .product-detail:hover {
+            transform: scale(1.02);
+            background-color: #fff;
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Tarjeta de confirmación de eliminación -->
+                <div class="card shadow-lg border-0 delete-container">
+                    <div class="card-header bg-danger text-white py-3">
+                        <h3 class="mb-0 text-center">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Eliminación
+                        </h3>
+                    </div>
+
+                    <div class="card-body p-4 text-center">
+                        <!-- Icono de advertencia -->
+                        <div class="mb-4">
+                            <i class="bi bi-shield-exclamation display-1 text-danger"></i>
+                        </div>
+
+                        <h4 class="mb-4">¿Estás seguro que deseas eliminar este producto?</h4>
+
+                        <!-- Detalles del producto -->
+                        <div class="product-detail mb-4">
+                            <dl class="row mb-0">
+                                <dt class="col-sm-3 text-end fw-bold text-danger">
+                                    <i class="bi bi-hash me-1"></i>ID:
+                                </dt>
+                                <dd class="col-sm-9 text-start fw-bold">
+                                    @Model.Id
+                                </dd>
+
+                                <dt class="col-sm-3 text-end fw-bold text-danger">
+                                    <i class="bi bi-tag me-1"></i>Producto:
+                                </dt>
+                                <dd class="col-sm-9 text-start">
+                                    @Model.Nombre
+                                </dd>
+
+                                <dt class="col-sm-3 text-end fw-bold text-danger">
+                                    <i class="bi bi-currency-dollar me-1"></i>Precio:
+                                </dt>
+                                <dd class="col-sm-9 text-start">
+                                    <span class="text-success fw-bold fs-5">
+                                        $@Model.Precio.ToString("N2")
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
+
+                        <!-- Advertencia adicional -->
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+                            <div>
+                                <strong>¡Atención!</strong> Esta acción no se puede deshacer.
+                                El producto será eliminado permanentemente del carrito.
+                            </div>
+                        </div>
+
+                        <!-- Formulario para confirmar eliminación -->
+                        <form asp-action="Delete" method="post" class="mt-4">
+                            <input type="hidden" asp-for="Id" />
+
+                            <div class="d-flex gap-3">
+                                <button type="submit" class="btn btn-danger btn-lg flex-fill">
+                                    <i class="bi bi-trash me-2"></i>Sí, Eliminar Producto
+                                </button>
+                                <a asp-action="Index" class="btn btn-outline-secondary btn-lg flex-fill">
+                                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Información de seguridad -->
+                    <div class="card-footer bg-transparent text-muted">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="bi bi-shield-check text-success me-2"></i>
+                            <small>Eliminación segura con token anti-forgery</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta informativa -->
+                <div class="card mt-4 border-warning">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-info-circle text-warning fs-3 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">¿Por qué eliminar un producto?</h6>
+                                <p class="mb-0 text-muted">
+                                    Puedes eliminar productos si ya no los necesitas o si agregaste
+                                    uno por error. Recuerda que esta acción es permanente.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
