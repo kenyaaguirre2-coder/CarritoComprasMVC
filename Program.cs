@@ -23,6 +23,6 @@ app.UseAuthorization();
 // Cambiar la ruta por defecto para que inicie en Carrito/Index
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Carrito}/{action=Index}/{id?}");
+    pattern: "{controller=Carritos}/{action=Index}/{id?}");
 
 app.Run();
