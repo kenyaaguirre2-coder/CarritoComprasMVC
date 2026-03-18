@@ -90,6 +90,18 @@ namespace CarritoComprasMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // POST: Carrito/CambiarComprador
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CambiarComprador(string nombreComprador)
+        {
+            if (!string.IsNullOrEmpty(nombreComprador))
+            {
+                HttpContext.Session.SetString(SessionKeyComprador, nombreComprador);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         // Métodos auxiliares para manejar la sesión
         private List<Producto> GetProductosFromSession()
         {
