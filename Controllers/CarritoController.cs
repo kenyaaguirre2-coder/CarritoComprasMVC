@@ -20,13 +20,13 @@ namespace CarritoComprasMVC.Controllers
 
             // Obtener la lista de productos de la sesión
             var productos = GetProductosFromSession();
-            return View("~/Views/Carritos/Index.cshtml", productos);
+            return View("~/Views/Carrito/Index.cshtml", productos);
         }
 
         // GET: Carrito/Create
         public IActionResult Create()
         {
-            return View("~/Views/Carritos/Create.cshtml");
+            return View("~/Views/Carrito/Create.cshtml");
         }
 
         // POST: Carrito/Create
@@ -57,7 +57,7 @@ namespace CarritoComprasMVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View("~/Views/Carritos/Create.cshtml", producto);
+            return View("~/Views/Carrito/Create.cshtml", producto);
         }
 
         // GET: Carrito/Delete/5
@@ -70,7 +70,7 @@ namespace CarritoComprasMVC.Controllers
 
             if (producto == null) return NotFound();
 
-            return View("~/Views/Carritos/Delete.cshtml", producto);
+            return View("~/Views/Carrito/Delete.cshtml", producto);
         }
 
         // POST: Carrito/Delete/5
